@@ -1,4 +1,4 @@
-# NewAuditroV2 — Framework d'Audit Active Directory & Infrastructure Windows
+# AuditorV2 — Framework d'Audit Active Directory & Infrastructure Windows
 
 > Framework PowerShell modulaire pour auditer des environnements Windows : comptes AD, VMs, hyperviseurs Hyper-V, GPO, réplication, permissions NTFS et comptes Microsoft 365. Inclut une brique de reconnaissance réseau automatisée via Nmap avec exécution distante via WinRM.
 
@@ -66,8 +66,8 @@
 ### 1. Cloner le dépôt
 
 ```powershell
-git clone https://github.com/<votre-org>/NewAuditroV2.git
-cd NewAuditroV2
+git clone https://github.com/<votre-org>/AuditorV2.git
+cd AuditorV2
 ```
 
 ### 2. Préparer Nmap (portable)
@@ -114,7 +114,7 @@ Tools\
 ## Structure du projet
 
 ```
-NewAuditroV2\
+AuditorV2\
 ├─ main.ps1                             ← orchestrateur principal
 ├─ init.ps1                             ← prérequis : Python, Graph, Npcap, templates
 ├─ modules_config.json                  ← config injection CSV → Excel
