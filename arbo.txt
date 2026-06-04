@@ -1,0 +1,75 @@
+NewAuditroV2\
+├─ main.ps1                                     ← orchestrateur principal
+├─ init.ps1                                     ← installation Python + génération templates
+├─ modules_config.json                          ← config modules Excel
+├─ Process_excels.py                            ← injection CSV → Excel
+├─ Scripts\
+│   ├─ PowerShell\
+│   │   ├─ 00_Reconnaissance.ps1                ← scan réseau + audit distant WinRM
+│   │   ├─ 10_Audit_comptes_T0.ps1
+│   │   ├─ 11_Audit_comptes.ps1
+│   │   ├─ 12_Audit_Comptes_365.ps1
+│   │   ├─ 13_Arborescence_OU.ps1
+│   │   ├─ 20_Audit_VMs.ps1
+│   │   ├─ 30_Audit_Replication.ps1             ← nécessite 20_Audit_VMs + repadmin (DC)
+│   │   ├─ 40_Audit_Hyperviseurs.ps1
+│   │   ├─ 50_Audit_NTFS.ps1                    ← nécessite AUDIT_NTFS_PATHS défini
+│   │   └─ 60_Audit_GPO.ps1                     ← nécessite RSAT (DC ou membre domaine)
+│   └─ Python\
+│       ├─ TemplateAuditCompte.py
+│       ├─ TemplateAuditGPO.py
+│       ├─ TemplateAuditHyperviseurs.py
+│       ├─ TemplateAuditNTFS.py
+│       ├─ TemplateAuditReplication.py
+│       └─ TemplateAuditVM.py
+├─ Templates_Excel\
+│   ├─ Template_Audit_Comptes.xlsx
+│   ├─ Template_Audit_Comptes_t0.xlsx
+│   ├─ Template_Audit_GPO.xlsx
+│   ├─ Template_Audit_Hyperviseurs.xlsx
+│   ├─ Template_Audit_NTFS.xlsx
+│   ├─ Template_Audit_Replication.xlsx
+│   └─ Template_Audit_VMs.xlsx
+├─ Tools\
+│   └─ Nmap\
+│       ├─ nmap.exe
+│       ├─ npcap-installer.exe
+│       ├─ ncat.exe
+│       ├─ nping.exe
+│       ├─ libcrypto-3.dll
+│       ├─ libssh2.dll
+│       ├─ libssl-3.dll
+│       ├─ zlibwapi.dll
+│       ├─ nmap-os-db
+│       ├─ nmap-services
+│       ├─ nmap-service-probes
+│       ├─ nmap-mac-prefixes
+│       ├─ nmap-protocols
+│       ├─ nmap-rpc
+│       ├─ nse_main.lua
+│       ├─ scripts\
+│       └─ nselib\
+├─ Temp_CSV\
+│   ├─ Comptes\
+│   │   ├─ <HOSTNAME>.<DOMAIN>_Audit_comptes_T0.csv
+│   │   ├─ <HOSTNAME>.<DOMAIN>_Audit_comptes.csv
+│   │   └─ <HOSTNAME>.<DOMAIN>_Audit_Comptes_365.csv
+│   ├─ HV\
+│   │   └─ <HOSTNAME>.<DOMAIN>_Audit_Hyperviseurs.csv
+│   ├─ VM\
+│   │   ├─ <HOSTNAME>.<DOMAIN>_Audit_VMs.csv
+│   │   └─ <HOSTNAME>.<DOMAIN>_Audit_Replication.csv
+│   ├─ <HOSTNAME>.<DOMAIN>_Audit_NTFS.csv
+│   ├─ <HOSTNAME>.<DOMAIN>_AD_OU_Tree.txt
+│   └─ Reconnaissance_YYYYMMDD_HHMMSS.csv       ← résultats scan réseau
+├─ Excel\
+│   └─ <nom_csv>.xlsx                           ← générés par Process_excels.py
+└─ Logs\
+    ├─ Audit_YYYYMMDD_HHMMSS.log
+    ├─ Init_YYYYMMDD_HHMMSS.log
+    └─ Reconnaissance_YYYYMMDD_HHMMSS\          ← logs Nmap par étape
+        ├─ step1_scan_updown.log
+        ├─ step1_hosts_up.txt
+        ├─ step2_scan_os.log
+        ├─ step3_scan_winrm.log
+        └─ step3_winrm.xml
