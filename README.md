@@ -35,9 +35,8 @@
 
 ### Machine qui lance le framework
 
-| Composant | Version minimale | Installé automatiquement |
+| Composant | Version | Installé automatiquement |
 |---|---|---|
-| Windows Server / Windows 10+ | — | — |
 | PowerShell | 5.1+ | — |
 | Python | 3.12+ | ✅ via `init.ps1` |
 | openpyxl | 3.x | ✅ via `init.ps1` |
